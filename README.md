@@ -1,15 +1,21 @@
-# (TODO: your game's title)
+# Reach
 
-Author: (TODO: your name)
+Author: Sirui Huang
 
-Design: (TODO: In two sentences or fewer, describe what is new and interesting about your game.)
+Design: Robotics is hard. Try to reach the goal with the tip of your heirarchical arm!
 
 Screen Shot:
 
 ![Screen Shot](screenshot.png)
 
 How To Play:
+N to rotate the body of the arm clockwise,
+M to rotate the body of the arm counterclockwise;
+J to rotate the root rod clockwise,
+K to rotate the root rod counterclockwise;
+I to rotate the branch rod clockwsie,
+O to rotate the branch rod counterclockwise.
+A,S,D,W to move the camera.
 
-(TODO: describe the controls and (if needed) goals/strategy.)
 
 This game was built with [NEST](NEST.md).
