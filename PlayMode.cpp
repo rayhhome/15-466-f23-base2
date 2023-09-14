@@ -68,6 +68,7 @@ PlayMode::PlayMode() : scene(*arm_scene) {
 
 	// generate random goal position
 	goal_pos = generate_unit() * max_radius;
+	goal->position = goal_pos;
 	std::cout << goal->position.x << ", " << goal->position.y << ", " << goal->position.z << std::endl;
 	goal_pos = goal->position;
 }
@@ -253,9 +254,16 @@ void PlayMode::update(float elapsed) {
 
 		camera->transform->position += move.x * frame_right + move.y * frame_forward;
 	}
-
-	std::cout << "handle head position: " << handle_head->position.x << ", " << handle_head->position.y << ", " << handle_head->position.z << std::endl;
+	glm::mat4x3 head_ltw = handle_head->make_local_to_world();
+	head_pos = head_ltw * glm::vec4(handle_head->position, 0.0f);
+	std::cout << "handle head position: " << head_pos.x << ", " << head_pos.y << ", " << head_pos.z << std::endl;
 	std::cout << "goal position: " << goal->position.x << ", " << goal->position.y << ", " << goal->position.z << std::endl;
+
+	if (glm::distance(head_pos, goal->position) < 4.0f) {
+		goal_pos = generate_unit() * max_radius;
+		goal->position = goal_pos;
+		goal_pos = goal->position;
+	}
 
 	//reset button press counters:
 	left.downs = 0;
